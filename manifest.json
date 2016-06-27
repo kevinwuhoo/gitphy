@@ -1,0 +1,24 @@
+{
+  "name": "gitphy",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "css": [
+        "/css/bootstrap-popover.css",
+        "/css/style.css"
+      ],
+      "js": [
+        "/node_modules/jquery/dist/jquery.js",
+        "/node_modules/bootstrap/js/tooltip.js",
+        "/node_modules/bootstrap/js/popover.js",
+        "/node_modules/lodash/lodash.js",
+        "/node_modules/randomColor/randomColor.js",
+        "/index.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": ["https://github.com/*"]
+}

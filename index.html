@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <link href="/css/bootstrap-popover.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <style>
+      html, body {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+
+				font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      :root {
+        --gh-textarea-width: 674px;
+        --popover-padding: 12px;
+        --popover-height: 320px;
+      }
+
+      #new_comment_field {
+        width: var(--gh-textarea-width);
+        height: 100px;
+
+        margin-top: 100px;
+
+				font-size: 14px;
+				line-height: 1.6;
+				border-radius: 3px;
+				padding: 10px;
+      }
+
+			h1 {
+				font-size: 72px;
+				margin-top: 140px;
+			}
+    </style>
+  </head>
+
+  <body>
+			<h1>GITPHY</h1>
+      <textarea id="new_comment_field" placeholder="Type ![](gitphy: <search term here>) to start searching"></textarea>
+
+      <script src="/node_modules/jquery/dist/jquery.js"></script>
+      <script src="/node_modules/bootstrap/js/tooltip.js"></script>
+      <script src="/node_modules/bootstrap/js/popover.js"></script>
+      <script src="node_modules/lodash/lodash.js"></script>
+      <script src="node_modules/randomColor/randomColor.js"></script>
+      <script src="/index.js"></script>
+  </body>
+</html>

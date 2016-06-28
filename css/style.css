@@ -26,24 +26,18 @@
   overflow-y: scroll;
 }
 
+/* used for loading and no results */
 .gitphy--intermediate-state {
   line-height: var(--popover-height);
   font-size: 24px;
   font-weight: 500;
 }
 
-.gitphy--gif-cover-wrapper {
-  width: 120px;
-  height: 120px;
-  margin: 3px;
-  overflow: hidden;
-  display: inline-block;
-}
-
 .gitphy--gif-cover {
   width: 120px;
   height: 120px;
   object-fit: cover;
+  margin: 3px;
 
   cursor: pointer;
 

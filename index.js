@@ -24,9 +24,7 @@ class Popover {
         </div>
       <% } else { %>
         <% _.each(gifs, function(gif){ %>
-          <div class='gitphy--gif-cover-wrapper' style='background-color: <%= gif.backgroundColor %>'>
-            <video src="<%= gif.preview %>" autoplay loop class='gitphy--gif-cover' data-original-gif-url="<%= gif.original %>"></video>
-          </div>
+          <img src="<%= gif.preview %>" class='gitphy--gif-cover' data-original-gif-url="<%= gif.original %>" style="background-color: <%= gif.backgroundColor %>">
         <% }) %>
       <% } %>
     `)
@@ -121,7 +119,7 @@ $textarea.on('input focus', _.debounce(() => {
       } else {
         let gifs = _.map(resp.data, (gif) => {
           return {
-            preview: gif.images.fixed_width.mp4,
+            preview: gif.images.fixed_width.url,
             original: gif.images.original.url,
             backgroundColor: randomColor({luminosity: 'light'}),
           }

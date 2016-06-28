@@ -2,6 +2,9 @@
   "name": "gitphy",
   "version": "0.0.1",
   "manifest_version": 2,
+  "icons": {
+    "128": "icons/icon128.png"
+  },
   "content_scripts": [
     {
       "matches": ["https://github.com/*"],

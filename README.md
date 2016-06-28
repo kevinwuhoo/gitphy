@@ -1,3 +1,3 @@
 ## TODO
 * Add loading more pages on scroll
-* Use non-deault bootstrap classes for selecting on
+* Add toolbar button to insert markdown template

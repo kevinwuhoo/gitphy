@@ -1,11 +1,17 @@
 /* global _, randomColor */
 
-let $textarea = $('#issue_body, #new_comment_field')
+// Select on:
+// 1. creating issue
+// 2. creating pr
+// 3. comment issue, comment pr, inline pr comment
+let textareaSelector = '[name="issue[body]"], [name="pull_request[body]"], [name="comment[body]"]'
+let parentSelector = '.repository-content'
+
 let giphyApi = 'https://api.giphy.com/v1/gifs/search'
 let gitphyRegex = /\(gitphy:([\w\s]+)\)/
 
 class Popover {
-  constructor() {
+  constructor($textarea) {
     let popoverTemplate = `
       <div class="popover gitphy--popover" role="tooltip">
         <div class="arrow"></div>
@@ -50,6 +56,11 @@ class Popover {
     this._popoverElement.popover('hide')
   }
 
+  destroy() {
+    this.isShown = false
+    this._popoverElement.popover('destroy')
+  }
+
   isShown() {
     return this.isShown
   }
@@ -71,7 +82,7 @@ class Popover {
   }
 }
 
-let popover = new Popover()
+let popover = null
 let lastQuery = null
 
 let getQuery = (text) => {
@@ -85,8 +96,13 @@ let getQuery = (text) => {
 
 // mouseup for when user clicks textarea
 // keyup for typing and pasting
-$textarea.on('input focus', _.debounce(() => {
+$(parentSelector).on('input focus', textareaSelector, _.debounce((event) => {
+  let $textarea = $(event.target)
   let query = getQuery($textarea.val())
+
+  if(!popover) {
+    popover = new Popover($textarea)
+  }
 
   // show popover if there is a query, it'll be populate below
   if(query && !popover.isShown) {
@@ -134,14 +150,19 @@ $textarea.on('input focus', _.debounce(() => {
 }, 500))
 
 // listen on clicks on gifs in popover
-$('body').on('mousedown', '.gitphy--gif-cover', (event) => {
+$(parentSelector).on('mousedown', '.gitphy--gif-cover', (event) => {
+  let $textarea = $(textareaSelector)
   let gifUrl = $(event.currentTarget).data('original-gif-url')
   let substitutedText = $textarea.val().replace(gitphyRegex, `(${gifUrl})`)
   $textarea.val(substitutedText)
 })
 
-// close popover and clear last query when textarea is unfocused
-$textarea.on('blur', () => {
+// close popover, destroy, and clear last query when textarea is unfocused
+$(parentSelector).on('blur', textareaSelector, () => {
   lastQuery = null
-  popover.hide()
+  // not efficient to create/destroy on every focus espcially if the query
+  // is the same, but is the easiest way to ensure that everything is
+  // setup and cleaned up correctly for now
+  popover.destroy()
+  popover = null
 })

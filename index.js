@@ -5,7 +5,7 @@
 // 2. creating pr
 // 3. comment issue, comment pr, inline pr comment
 let textareaSelector = '[name="issue[body]"], [name="pull_request[body]"], [name="comment[body]"]'
-let parentSelector = '.repository-content'
+let parentSelector = '.main-content'
 
 let giphyApi = 'https://api.giphy.com/v1/gifs/search'
 let gitphyRegex = /\(gitphy:([\w\s]+)\)/

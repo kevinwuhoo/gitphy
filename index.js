@@ -166,6 +166,8 @@ $(parentSelector).on('blur', textareaSelector, () => {
   // not efficient to create/destroy on every focus espcially if the query
   // is the same, but is the easiest way to ensure that everything is
   // setup and cleaned up correctly for now
-  popover.destroy()
+  if(popover) {
+    popover.destroy()
+  }
   popover = null
 })

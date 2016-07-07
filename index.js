@@ -41,9 +41,11 @@ class Popover {
       html: true,
       trigger: 'manual',
       template: popoverTemplate,
+      container: parentSelector,
     })
 
     this.isShown = true
+    this.idPopoverFor = `#${$textarea.attr('id')}`
   }
 
   show() {
@@ -151,8 +153,9 @@ $(parentSelector).on('input focus', textareaSelector, _.debounce((event) => {
 
 // listen on clicks on gifs in popover
 $(parentSelector).on('mousedown', '.gitphy--gif-cover', (event) => {
-  let $textarea = $(textareaSelector)
   let gifUrl = $(event.currentTarget).data('original-gif-url')
+  let $textarea = $(popover.idPopoverFor)
+
   let substitutedText = $textarea.val().replace(gitphyRegex, `(${gifUrl})`)
   $textarea.val(substitutedText)
 })

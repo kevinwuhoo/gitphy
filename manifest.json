@@ -18,6 +18,7 @@
         "/node_modules/bootstrap/js/popover.js",
         "/node_modules/lodash/lodash.js",
         "/node_modules/randomColor/randomColor.js",
+        "/node_modules/scroll-scope/scroll-scope.js",
         "/index.js"
       ],
       "run_at": "document_end"

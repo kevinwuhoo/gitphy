@@ -7,7 +7,8 @@
     "bootstrap": "^3.3.6",
     "jquery": "^2.2.4",
     "lodash": "^4.13.1",
-    "randomcolor": "^0.4.4"
+    "randomcolor": "^0.4.4",
+    "scroll-scope": "github:eiskis/scroll-scope"
   },
   "devDependencies": {},
   "scripts": {

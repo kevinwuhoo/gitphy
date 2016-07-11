@@ -18,7 +18,7 @@ class Popover {
     let popoverTemplate = `
       <div class="popover gitphy--popover" role="tooltip">
         <div class="arrow"></div>
-        <div class="popover-content gitphy--popover-content"></div>
+        <div class="popover-content gitphy--popover-content" data-scroll-scope></div>
       </div>
     `
 

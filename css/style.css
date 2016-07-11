@@ -33,20 +33,13 @@
   font-weight: 500;
 }
 
-.gitphy--gif-cover {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  margin: 3px;
+.gitphy--gif {
+  font-size: 0;
+  width: 125px;
+  height: 125px;
+  background-size: cover;
 
   cursor: pointer;
 
-  /* transition-property: object-fit; */
-  /* transition-duration: 1s; */
+  border: 5px solid #fff;
 }
-
-/*
-.gif-cover:hover {
-  object-fit: fill;
-}
-*/

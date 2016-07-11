@@ -10,6 +10,9 @@ let parentSelector = '.main-content'
 let giphyApi = 'https://api.giphy.com/v1/gifs/search'
 let gitphyRegex = /\(gitphy:([\w\s]+)\)/
 
+let popover = null
+let lastQuery = null
+
 class Popover {
   constructor($textarea) {
     let popoverTemplate = `
@@ -30,7 +33,12 @@ class Popover {
         </div>
       <% } else { %>
         <% _.each(gifs, function(gif){ %>
-          <img src="<%= gif.preview %>" class='gitphy--gif-cover' data-original-gif-url="<%= gif.original %>" style="background-color: <%= gif.backgroundColor %>">
+          <img
+            src="<%= gif.preview %>"
+            class='gitphy--gif'
+            data-original-gif-url="<%= gif.original %>"
+            style="background-color: <%= gif.backgroundColor %>"
+          >
         <% }) %>
       <% } %>
     `)
@@ -84,9 +92,6 @@ class Popover {
   }
 }
 
-let popover = null
-let lastQuery = null
-
 let getQuery = (text) => {
   let match = text.match(gitphyRegex)
   if(match) {
@@ -96,9 +101,7 @@ let getQuery = (text) => {
   }
 }
 
-// mouseup for when user clicks textarea
-// keyup for typing and pasting
-$(parentSelector).on('input focus', textareaSelector, _.debounce((event) => {
+let handleTextareaChange = (event) => {
   let $textarea = $(event.target)
   let query = getQuery($textarea.val())
 
@@ -139,7 +142,7 @@ $(parentSelector).on('input focus', textareaSelector, _.debounce((event) => {
           return {
             preview: gif.images.fixed_width.url,
             original: gif.images.original.url,
-            backgroundColor: randomColor({luminosity: 'light'}),
+            backgroundColor: randomColor({luminosity: 'bright'}),
           }
         })
 
@@ -149,19 +152,17 @@ $(parentSelector).on('input focus', textareaSelector, _.debounce((event) => {
       lastQuery = query
     })
   }
-}, 500))
+}
 
-// listen on clicks on gifs in popover
-$(parentSelector).on('mousedown', '.gitphy--gif-cover', (event) => {
+let handleGifClick = (event) => {
   let gifUrl = $(event.currentTarget).data('original-gif-url')
   let $textarea = $(popover.idPopoverFor)
 
   let substitutedText = $textarea.val().replace(gitphyRegex, `(${gifUrl})`)
   $textarea.val(substitutedText)
-})
+}
 
-// close popover, destroy, and clear last query when textarea is unfocused
-$(parentSelector).on('blur', textareaSelector, () => {
+let handleTextareaBlur = () => {
   lastQuery = null
   // not efficient to create/destroy on every focus espcially if the query
   // is the same, but is the easiest way to ensure that everything is
@@ -170,4 +171,28 @@ $(parentSelector).on('blur', textareaSelector, () => {
     popover.destroy()
   }
   popover = null
-})
+}
+
+let handleGifMouseover = (event) => {
+  $(event.currentTarget).css('border-color', randomColor({luminosity: 'bright'}))
+}
+
+let handleGifMouseout = (event) => {
+  $(event.currentTarget).css('border-color', '#fff')
+}
+
+// mouseup for when user clicks textarea; keyup for typing and pasting
+$(parentSelector).on('input focus', textareaSelector, _.debounce(handleTextareaChange, 500))
+
+// close popover, destroy, and clear last query when textarea is unfocused
+$(parentSelector).on('blur', textareaSelector, handleTextareaBlur)
+
+// listen on clicks on gifs in popover
+$(parentSelector).on('mousedown', '.gitphy--gif', handleGifClick)
+
+// add/remove border to/from gif on hover for active state
+$(parentSelector).on('mouseover', '.gitphy--gif', handleGifMouseover)
+$(parentSelector).on('mouseout', '.gitphy--gif', handleGifMouseout)
+
+// initialize scroll-scope to keep parent page from scrolling
+$(parentSelector).scrollScope()

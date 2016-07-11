@@ -18,7 +18,7 @@
         --popover-height: 320px;
       }
 
-      #new_comment_field {
+      [name="issue[body]"] {
         width: var(--gh-textarea-width);
         height: 100px;
 
@@ -39,7 +39,9 @@
 
   <body>
 			<h1>GITPHY</h1>
-      <textarea id="new_comment_field" placeholder="Type ![](gitphy: <search term here>) to start searching"></textarea>
+      <div class='main-content'>
+        <textarea name="issue[body]" placeholder="Type ![](gitphy: <search term here>) to start searching">![](gitphy: lol)</textarea>
+      </div>
 
       <script src="/node_modules/jquery/dist/jquery.js"></script>
       <script src="/node_modules/bootstrap/js/tooltip.js"></script>

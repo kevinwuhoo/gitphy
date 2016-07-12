@@ -52,7 +52,7 @@ class Popover {
       container: parentSelector,
     })
 
-    this.isShown = true
+    this.show()
     this.idPopoverFor = `#${$textarea.attr('id')}`
   }
 
@@ -82,8 +82,6 @@ class Popover {
   }
 
   render(opts) {
-    this.show()
-
     this.popoverContent = this.popoverContentTemplate(_.defaults(
       opts,
       {loading: false, noResults: false}
@@ -128,7 +126,8 @@ let handleTextareaChange = (event) => {
   if(query && lastQuery != query) {
     popover.render({loading: true, query: query})
 
-    $.get(giphyApi, {q: query, api_key: 'dc6zaTOxFJmzC'}).done((resp) => {
+    let giphyApiParams = {q: query, api_key: 'dc6zaTOxFJmzC', limit: 50}
+    $.get(giphyApi, giphyApiParams).done((resp) => {
 
       // No results found
       if(resp.data.length == 0) {

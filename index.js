@@ -1,4 +1,13 @@
-/* global _, randomColor */
+/* global require */
+
+const $ = require('jquery')
+const _ = require('lodash')
+const randomColor = require('randomColor')
+
+require('scroll-scope')
+require('bootstrap/js/tooltip')
+require('bootstrap/js/popover')
+
 
 // Select on:
 // 1. creating issue

@@ -14,10 +14,10 @@ require('bootstrap/js/popover')
 // 2. creating pr
 // 3. comment issue, comment pr, inline pr comment
 let textareaSelector = '[name="issue[body]"], [name="pull_request[body]"], [name="comment[body]"]'
-let parentSelector = '.main-content'
+let parentSelector = 'div[role="main"]'
 
 let giphyApi = 'https://api.giphy.com/v1/gifs/search'
-let gitphyRegex = /\(gitphy:([\w\s]+)\)/
+let gitphyRegex = /\(gif:([\w\s]+)\)/
 
 let popover = null
 let lastQuery = null

@@ -2,7 +2,11 @@
   "name": "gitphy",
   "version": "0.0.1",
   "manifest_version": 2,
+  "description": "Put gifs in your Github issues and pull requests without leaving the textarea",
+  "author": "Kevin Wu",
   "icons": {
+    "32": "icons/icon32.png",
+    "64": "icons/icon64.png",
     "128": "icons/icon128.png"
   },
   "content_scripts": [

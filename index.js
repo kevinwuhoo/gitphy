@@ -1,4 +1,4 @@
-/* global require */
+/* global require, chrome */
 
 const $ = require('jquery')
 const _ = require('lodash')
@@ -28,6 +28,9 @@ class Popover {
       <div class="popover gitphy--popover" role="tooltip">
         <div class="arrow"></div>
         <div class="popover-content gitphy--popover-content" data-scroll-scope></div>
+        <div class="popover-footer">
+          <img class="giphy-attribution" src="${chrome.extension.getURL("images/giphy_attribution.png")}">
+        </div>
       </div>
     `
 

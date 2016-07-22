@@ -2,6 +2,7 @@
   --gh-textarea-width: 674px;
   --popover-padding: 12px;
   --popover-height: 320px;
+  --popover-footer: 16px;
 }
 
 .gitphy--popover {
@@ -10,7 +11,7 @@
   box-sizing: border-box;
   max-width: var(--gh-textarea-width);
   width: var(--gh-textarea-width);
-  height: var(--popover-height);
+  height: calc(var(--popover-height) + var(--popover-footer));
 
   padding: var(--popover-padding);
 }
@@ -42,4 +43,10 @@
   cursor: pointer;
 
   border: 5px solid #fff;
+}
+
+.giphy-attribution {
+  height: 16px;
+  float: right;
+  margin-top: 5px;
 }

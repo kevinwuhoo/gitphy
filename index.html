@@ -46,6 +46,9 @@
         <textarea name="issue[body]" id="testbox" placeholder="Type ![](gif: <search term here>) to start searching">![](gitphy: lol)</textarea>
       </div>
 
+      <script>
+        window.chrome = {extension: {getURL: function(path) {return path}}}
+      </script>
       <script src="/index.bundle.js"></script>
   </body>
 </html>

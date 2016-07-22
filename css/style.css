@@ -1,0 +1,52 @@
+:root {
+  --gh-textarea-width: 674px;
+  --popover-padding: 12px;
+  --popover-height: 320px;
+  --popover-footer: 16px;
+}
+
+.gitphy--popover {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  box-sizing: border-box;
+  max-width: var(--gh-textarea-width);
+  width: var(--gh-textarea-width);
+  height: calc(var(--popover-height) + var(--popover-footer));
+
+  padding: var(--popover-padding);
+}
+
+.gitphy--popover-content {
+  max-width: calc(var(--gh-textarea-width) - 2 * var(--popover-padding));
+  width: calc(var(--gh-textarea-width) - 2 * var(--popover-padding));
+
+  height: calc(var(--popover-height) - 2 * var(--popover-padding));
+
+  padding: 0;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+/* used for loading and no results */
+.gitphy--intermediate-state {
+  line-height: var(--popover-height);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.gitphy--gif {
+  font-size: 0;
+  width: 125px;
+  height: 125px;
+  background-size: cover;
+
+  cursor: pointer;
+
+  border: 5px solid #fff;
+}
+
+.giphy-attribution {
+  height: 16px;
+  float: right;
+  margin-top: 5px;
+}

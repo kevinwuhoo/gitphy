@@ -13,11 +13,14 @@ require('bootstrap/js/popover')
 // 1. creating issue
 // 2. creating pr
 // 3. comment issue, comment pr, inline pr comment
-let textareaSelector = '[name="issue[body]"], [name="pull_request[body]"], [name="comment[body]"]'
-let parentSelector = 'div[role="main"]'
+const textareaSelectorGithub = ['[name="issue[body]"]', '[name="pull_request[body]"]', '[name="comment[body]"]']
+const textareaSelectorBitbucket = ['.bb-mention-input.markItUpEditor']
 
-let giphyApi = 'https://api.giphy.com/v1/gifs/search'
-let gitphyRegex = /\(gif:([\w\s]+)\)/
+const textareaSelectors = _.join(_.concat(textareaSelectorGithub, textareaSelectorBitbucket))
+const parentSelector = 'div[role="main"]'
+
+const giphyApi = 'https://api.giphy.com/v1/gifs/search'
+const gitphyRegex = /\(gif:([\w\s]+)\)/
 
 let popover = null
 let lastQuery = null
@@ -193,10 +196,10 @@ let handleGifMouseout = (event) => {
 }
 
 // mouseup for when user clicks textarea; keyup for typing and pasting
-$(parentSelector).on('input focus', textareaSelector, _.debounce(handleTextareaChange, 500))
+$(parentSelector).on('input focus', textareaSelectors, _.debounce(handleTextareaChange, 500))
 
 // close popover, destroy, and clear last query when textarea is unfocused
-$(parentSelector).on('blur', textareaSelector, handleTextareaBlur)
+$(parentSelector).on('blur', textareaSelectors, handleTextareaBlur)
 
 // listen on clicks on gifs in popover
 $(parentSelector).on('mousedown', '.gitphy--gif', handleGifClick)

@@ -5,6 +5,11 @@
   --popover-footer: 16px;
 }
 
+.gitphy--popover,
+.gitphy--popover * {
+  box-sizing: border-box;
+}
+
 .gitphy--popover {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 

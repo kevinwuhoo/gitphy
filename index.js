@@ -13,7 +13,7 @@ require('bootstrap/js/popover')
 // 1. creating issue
 // 2. creating pr
 // 3. comment issue, comment pr, inline pr comment
-const textareaSelectorGithub = ['[name="issue[body]"]', '[name="pull_request[body]"]', '[name="comment[body]"]']
+const textareaSelectorGithub = ['[name="issue[body]"]', '[name="pull_request[body]"]', '[name="comment[body]"]', '[name="pull_request_review[body]"]']
 const textareaSelectorBitbucket = ['.bb-mention-input.markItUpEditor']
 
 const textareaSelectors = _.join(_.concat(textareaSelectorGithub, textareaSelectorBitbucket))

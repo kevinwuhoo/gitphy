@@ -13,7 +13,7 @@ require('bootstrap/js/popover')
 // 1. creating issue
 // 2. creating pr
 // 3. comment issue, comment pr, inline pr comment
-let textareaSelector = '[name="issue[body]"], [name="pull_request[body]"], [name="comment[body]"]'
+let textareaSelector = '[name="issue[body]"], [name="pull_request[body]"], [name="comment[body]"], [name="pull_request_review[body]"]'
 let parentSelector = 'div[role="main"]'
 
 let giphyApi = 'https://api.giphy.com/v1/gifs/search'

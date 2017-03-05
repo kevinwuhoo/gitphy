@@ -10,7 +10,8 @@
   box-sizing: border-box;
 }
 
-.gitphy--popover {
+/* uses two classes to override gitlab styles */
+.gitphy--popover.popover {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   box-sizing: border-box;
@@ -21,7 +22,8 @@
   padding: var(--popover-padding);
 }
 
-.gitphy--popover-content {
+/* uses two classes to override gitlab styles */
+.gitphy--popover-content.popover-content {
   max-width: calc(var(--gh-textarea-width) - 2 * var(--popover-padding));
   width: calc(var(--gh-textarea-width) - 2 * var(--popover-padding));
 

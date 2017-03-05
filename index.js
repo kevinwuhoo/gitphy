@@ -15,9 +15,10 @@ require('bootstrap/js/popover')
 // 3. comment issue, comment pr, inline pr comment
 const textareaSelectorGithub = ['[name="issue[body]"]', '[name="pull_request[body]"]', '[name="comment[body]"]']
 const textareaSelectorBitbucket = ['.bb-mention-input.markItUpEditor']
+const textareaSelectorGitLab = ['.note-textarea.markdown-area']
 
-const textareaSelectors = _.join(_.concat(textareaSelectorGithub, textareaSelectorBitbucket))
-const parentSelector = 'div[role="main"]'
+const textareaSelectors = _.join(_.concat(textareaSelectorGithub, textareaSelectorBitbucket, textareaSelectorGitLab))
+const parentSelector = 'body'
 
 const giphyApi = 'https://api.giphy.com/v1/gifs/search'
 const gitphyRegex = /\(gif:([\w\s]+)\)/

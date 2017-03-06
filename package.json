@@ -22,7 +22,9 @@
   },
   "scripts": {
     "eslint": "eslint index.js",
-    "eslint-fix": "eslint --fix index.js"
+    "eslint-fix": "eslint --fix index.js",
+    "build-watch": "webpack --watch",
+    "build": "webpack --optimize-minimize"
   },
   "author": "",
   "license": "ISC"

@@ -1,6 +1,7 @@
 /* global require, module, __dirname */
 
 const path = require('path')
+
 const NODE_MODULES = path.join(__dirname, 'node_modules/')
 
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
   resolve: {
     root: [NODE_MODULES],
     alias: {
-        jquery: 'jquery/src/jquery',
+      jquery: 'jquery/src/jquery',
     },
   },
   module: {

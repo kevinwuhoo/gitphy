@@ -23,8 +23,7 @@
   "scripts": {
     "eslint": "eslint index.js",
     "eslint-fix": "eslint --fix index.js",
-    "build-watch": "webpack --watch",
-    "build": "webpack --optimize-minimize"
+    "build-watch": "webpack --watch"
   },
   "author": "",
   "license": "ISC"

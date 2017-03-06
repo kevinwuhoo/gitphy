@@ -38,7 +38,7 @@
   font-size: 0;
   width: 125px;
   height: 125px;
-  background-size: cover;
+  object-fit: cover;
 
   cursor: pointer;
 

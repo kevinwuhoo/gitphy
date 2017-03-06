@@ -1,6 +1,6 @@
 {
   "name": "gitphy",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Gifs in your Github",
   "main": "index.js",
   "dependencies": {

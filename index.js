@@ -14,7 +14,7 @@ import 'bootstrap/js/popover'
 // 3. comment issue, comment pr, inline pr comment
 // 3. pr review dropdown
 const textareaSelector = '[name="issue[body]"], [name="pull_request[body]"], [name="comment[body]"], [name="pull_request_review[body]"]'
-const parentSelector = 'div[role="main"]'
+const parentSelector = 'div.application-main'
 
 const giphyApi = 'https://api.giphy.com/v1/gifs/search'
 const gitphyRegex = /\(gif:([\w\s]+)\)/

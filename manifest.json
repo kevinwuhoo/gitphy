@@ -1,6 +1,6 @@
 {
   "name": "gitphy",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "manifest_version": 2,
   "description": "Put gifs in your Github issues and pull requests without leaving the textarea",
   "author": "Kevin Wu",

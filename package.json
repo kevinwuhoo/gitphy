@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "jquery": "^3.1.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.13.1",
     "randomcolor": "^0.4.4",
     "scroll-scope": "github:eiskis/scroll-scope"

@@ -8,12 +8,13 @@ import 'bootstrap/js/tooltip'
 import 'bootstrap/js/popover'
 
 
-// Select on:
-// 1. creating issue
-// 2. creating pr
-// 3. comment issue, comment pr, inline pr comment
-// 3. pr review dropdown
-const textareaSelector = '[name="issue[body]"], [name="pull_request[body]"], [name="comment[body]"], [name="pull_request_review[body]"]'
+const textareaSelector = [
+  '[name="issue[body]"]',  // create issue
+  '[name="pull_request[body]"]',  // create PR
+  '[name="comment[body]"]',  // create issue/PR comment
+  '[name="pull_request_review[body]"]',  // create PR review comment dropdown
+  '[name="issue_comment[body]"]',  // edit issue/PR comment
+].join(', ')
 const parentSelector = 'div.application-main'
 
 const giphyApi = 'https://api.giphy.com/v1/gifs/search'

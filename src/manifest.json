@@ -1,29 +1,23 @@
 {
   "name": "gitphy",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "manifest_version": 2,
   "description": "Put gifs in your Github issues and pull requests without leaving the textarea",
   "author": "Kevin Wu",
   "icons": {
-    "32": "icons/icon32.png",
-    "64": "icons/icon64.png",
-    "128": "icons/icon128.png"
+    "16": "/icons/icon16.png",
+    "32": "/icons/icon32.png",
+    "48": "/icons/icon48.png",
+    "128": "/icons/icon128.png"
   },
   "content_scripts": [
     {
       "matches": ["https://github.com/*"],
-      "css": [
-        "/css/bootstrap-popover.css",
-        "/css/style.css"
-      ],
-      "js": [
-        "/index.bundle.js"
-      ],
+      "css": ["/index.css"],
+      "js": ["/index.js"],
       "run_at": "document_end"
     }
   ],
   "permissions": ["https://github.com/*"],
-  "web_accessible_resources": [
-    "images/giphy_attribution.png"
-  ]
+  "web_accessible_resources": ["/giphy-attribution.png"]
 }

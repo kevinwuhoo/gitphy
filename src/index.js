@@ -27,7 +27,7 @@ class Popover {
         <div class="gitphy--popover-content"></div>
         <div class="giphy--attribution-wrapper">
           <img class="giphy--attribution" src="${chrome.extension.getURL(
-            "/giphy-attribution.png"
+            "giphy-attribution.png"
           )}">
         </div>
       </div>

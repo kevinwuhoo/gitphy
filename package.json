@@ -2,7 +2,7 @@
   "name": "gitphy",
   "author": "Kevin Wu",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gifs in your Github",
   "main": "index.js",
   "dependencies": {

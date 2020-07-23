@@ -21,7 +21,8 @@
     "clean": "rm -rf .cache dist",
     "clean-build": "npm run clean && npm run build",
     "format": "npx prettier --write src/index.js",
-    "pre-build": "rm -rf dist && mkdir dist && cp -r src/icons/icon*.png src/giphy-attribution.png src/manifest.json dist"
+    "pre-build": "rm -rf dist && mkdir dist && cp -r src/icons/icon*.png src/giphy-attribution.png src/manifest.json dist",
+    "serve-docs": "python -m http.server --directory docs"
   },
   "browserslist": [
     "last 2 Chrome versions"

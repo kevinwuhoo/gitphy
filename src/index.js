@@ -27,16 +27,17 @@ class Popover {
         <div class="gitphy--popover-content"></div>
         <div class="giphy--attribution-wrapper">
           <img class="giphy--attribution" src="${chrome.extension.getURL(
-            "/giphy-attribution.png"
+            "giphy-attribution.png"
           )}">
         </div>
       </div>
     `;
 
     this._popover = tippy(textarea, {
-      allowHTML: true,
+      allowHTML: true, // allows content render HTML
       content: popoverTemplate,
-      interactive: true,
+      interactive: true, // allows clicks in the popover
+      hideOnClick: false, // prevents hiding when clicking outside popover
       maxWidth: 650,
       trigger: "manual",
       theme: "light",
@@ -86,7 +87,7 @@ class Popover {
   renderNoResults(query) {
     const div = document.createElement("div");
     div.className = "gitphy--intermediate-state";
-    div.innerHTML = `No results found for "${query}"...`;
+    div.innerHTML = `No results found for "${query}".`;
 
     this._render(div.outerHTML);
   }

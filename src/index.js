@@ -61,12 +61,12 @@ class Popover {
     this._popover.destroy();
   }
 
-  _getContentEl() {
+  _getContentNode() {
     return document.querySelector(".gitphy--popover-content");
   }
 
   _render(content) {
-    this._getContentEl().innerHTML = content;
+    this._getContentNode().innerHTML = content;
   }
 
   async renderGifs(gifs) {
@@ -80,12 +80,22 @@ class Popover {
   // By using data urls, it works around github's Content-Security-Policy
   // restrictions, but it loads slower and is more memory-intensive.
   async renderGifsAvoidCSP(gifs) {
-    const promises = gifs.map(async (gif) => {
+    // Set up new content node
+    const oldContentNode = this._getContentNode();
+    const newContentNode = oldContentNode.cloneNode(false);
+    // Fill in img tags with no src, but background
+    gifs.forEach((gif, idx) => {
       const img = document.createElement("img");
       img.className = "gitphy--gif";
       img.style.backgroundColor = randomColor({ luminosity: "bright" });
-      // img.setAttribute("src", gif.images.fixed_width.url);
       img.setAttribute("data-gif-url", gif.images.downsized_medium.url);
+      newContentNode.appendChild(img);
+    })
+    oldContentNode.parentNode.replaceChild(newContentNode, oldContentNode);
+
+    // As images come in, update the img tag to show the image.
+    const promises = gifs.forEach(async (gif, idx) => {
+      // Fetching
       const r = await fetch(gif.images.fixed_width.url);
       const b = await r.blob();
       const dataURL = await new Promise((resolve, reject) => {
@@ -95,13 +105,9 @@ class Popover {
         };
         reader.readAsDataURL(b);
       });
+      const img = newContentNode.childNodes[idx];
       img.setAttribute("src", dataURL);
-      return img.outerHTML;
     });
-    // Not sure how I feel about this, feels very FOUC-y.
-    // Could try to render as they come in.
-    const gifEls = await Promise.all(promises);
-    this._render(gifEls.join(""));
   }
 
   renderGifsNoCSP(gifs) {

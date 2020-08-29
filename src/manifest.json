@@ -18,7 +18,6 @@
       "run_at": "document_end"
     }
   ],
-  "content_security_policy": "script-src 'self'; object-src 'self'; img-src 'self' https://media*.giphy.com",
   "permissions": [
     "https://github.com/*",
     "https://*.giphy.com/*"

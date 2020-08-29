@@ -95,7 +95,6 @@ class Popover {
 
     // As images come in, update the img tag to show the image.
     const promises = gifs.forEach(async (gif, idx) => {
-      // Fetching
       const r = await fetch(gif.images.fixed_width.url);
       const b = await r.blob();
       const dataURL = await new Promise((resolve, reject) => {

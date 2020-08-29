@@ -77,6 +77,8 @@ class Popover {
     }
   }
 
+  // By using data urls, it works around github's Content-Security-Policy
+  // restrictions, but it loads slower and is more memory-intensive.
   async renderGifsAvoidCSP(gifs) {
     const promises = gifs.map(async (gif) => {
       const img = document.createElement("img");
@@ -96,7 +98,8 @@ class Popover {
       img.setAttribute("src", dataURL);
       return img.outerHTML;
     });
-    // Not sure how I feel about this, feels very FOUC-y
+    // Not sure how I feel about this, feels very FOUC-y.
+    // Could try to render as they come in.
     const gifEls = await Promise.all(promises);
     this._render(gifEls.join(""));
   }

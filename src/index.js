@@ -22,13 +22,13 @@ let prevQuery = null;
 
 class Popover {
   constructor(textarea) {
+    // Also works for firefox, they emulate the chrome object
+    const giphyAttributionURL = chrome.runtime.getURL("giphy-attribution.png");
     const popoverTemplate = `
       <div class="gitphy--popover">
         <div class="gitphy--popover-content"></div>
         <div class="giphy--attribution-wrapper">
-          <img class="giphy--attribution" src="${chrome.extension.getURL(
-            "giphy-attribution.png"
-          )}">
+          <img class="giphy--attribution" src="${giphyAttributionURL}">
         </div>
       </div>
     `;

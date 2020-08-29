@@ -44,6 +44,9 @@ class Popover {
     });
 
     this.textarea = textarea;
+    // TODO: Check if CSP is in effect, that would be better.
+    // Then firefox could be fast on pages without CSP.
+    this.isFirefox = navigator.userAgent.indexOf("Firefox") != -1;
   }
 
   show() {
@@ -58,11 +61,47 @@ class Popover {
     this._popover.destroy();
   }
 
-  _render(content) {
-    document.querySelector(".gitphy--popover-content").innerHTML = content;
+  _getContentEl() {
+    return document.querySelector(".gitphy--popover-content");
   }
 
-  renderGifs(gifs) {
+  _render(content) {
+    this._getContentEl().innerHTML = content;
+  }
+
+  async renderGifs(gifs) {
+    if (this.isFirefox) {
+      await this.renderGifsAvoidCSP(gifs);
+    } else {
+      this.renderGifsNoCSP(gifs);
+    }
+  }
+
+  async renderGifsAvoidCSP(gifs) {
+    const promises = gifs.map(async (gif) => {
+      const img = document.createElement("img");
+      img.className = "gitphy--gif";
+      img.style.backgroundColor = randomColor({ luminosity: "bright" });
+      // img.setAttribute("src", gif.images.fixed_width.url);
+      img.setAttribute("data-gif-url", gif.images.downsized_medium.url);
+      const r = await fetch(gif.images.fixed_width.url);
+      const b = await r.blob();
+      const dataURL = await new Promise((resolve, reject) => {
+        var reader = new FileReader();
+        reader.onloadend = () => {
+          resolve(reader.result);
+        };
+        reader.readAsDataURL(b);
+      });
+      img.setAttribute("src", dataURL);
+      return img.outerHTML;
+    });
+    // Not sure how I feel about this, feels very FOUC-y
+    const gifEls = await Promise.all(promises);
+    this._render(gifEls.join(""));
+  }
+
+  renderGifsNoCSP(gifs) {
     const gifEls = gifs
       .map((gif) => {
         const img = document.createElement("img");
@@ -122,7 +161,7 @@ const _handleTextareaChange = async (event) => {
       if (gifs.length === 0) {
         popover.renderNoResults(query);
       } else {
-        popover.renderGifs(gifs);
+        await popover.renderGifs(gifs);
       }
     } catch (err) {
       throw (err);

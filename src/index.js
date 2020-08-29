@@ -117,11 +117,15 @@ const _handleTextareaChange = async (event) => {
   if (query && prevQuery !== query) {
     popover.renderLoading(query);
 
-    const { data: gifs } = await giphy.search(query, { limit: 100 });
-    if (gifs.length === 0) {
-      popover.renderNoResults(query);
-    } else {
-      popover.renderGifs(gifs);
+    try {
+      const { data: gifs } = await giphy.search(query, { limit: 100 });
+      if (gifs.length === 0) {
+        popover.renderNoResults(query);
+      } else {
+        popover.renderGifs(gifs);
+      }
+    } catch (err) {
+      throw (err);
     }
 
     prevQuery = query;

@@ -94,7 +94,7 @@ class Popover {
     oldContentNode.parentNode.replaceChild(newContentNode, oldContentNode);
 
     // As images come in, update the img tag to show the image.
-    const promises = gifs.forEach(async (gif, idx) => {
+    gifs.forEach(async (gif, idx) => {
       const r = await fetch(gif.images.fixed_width.url);
       const b = await r.blob();
       const dataURL = await new Promise((resolve, reject) => {

@@ -46,7 +46,7 @@ class Popover {
     this.textarea = textarea;
     // TODO: Check if CSP is in effect, that would be better.
     // Then firefox could be fast on pages without CSP.
-    this.isFirefox = navigator.userAgent.indexOf("Firefox") != -1;
+    this.isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
   }
 
   show() {

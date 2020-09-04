@@ -90,7 +90,7 @@ class Popover {
       img.style.backgroundColor = randomColor({ luminosity: "bright" });
       img.setAttribute("data-gif-url", gif.images.downsized_medium.url);
       newContentNode.appendChild(img);
-    })
+    });
     oldContentNode.parentNode.replaceChild(newContentNode, oldContentNode);
 
     // As images come in, update the img tag to show the image.
@@ -172,7 +172,7 @@ const _handleTextareaChange = async (event) => {
         await popover.renderGifs(gifs);
       }
     } catch (err) {
-      throw (err);
+      throw err;
     }
 
     prevQuery = query;

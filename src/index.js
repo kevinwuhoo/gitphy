@@ -61,6 +61,14 @@ class Popover {
     this._popover.destroy();
   }
 
+  _createImgNode(gif) {
+    const img = document.createElement("img");
+    img.className = "gitphy--gif";
+    img.style.backgroundColor = randomColor({ luminosity: "bright" });
+    img.setAttribute("data-gif-url", gif.images.downsized_medium.url);
+    return img;
+  }
+
   _getContentNode() {
     return document.querySelector(".gitphy--popover-content");
   }
@@ -85,10 +93,7 @@ class Popover {
     const newContentNode = oldContentNode.cloneNode(false);
     // Fill in img tags with no src, but background
     gifs.forEach((gif, idx) => {
-      const img = document.createElement("img");
-      img.className = "gitphy--gif";
-      img.style.backgroundColor = randomColor({ luminosity: "bright" });
-      img.setAttribute("data-gif-url", gif.images.downsized_medium.url);
+      const img = this._createImgNode(gif);
       newContentNode.appendChild(img);
     });
     oldContentNode.parentNode.replaceChild(newContentNode, oldContentNode);
@@ -112,11 +117,8 @@ class Popover {
   renderGifsNoCSP(gifs) {
     const gifEls = gifs
       .map((gif) => {
-        const img = document.createElement("img");
-        img.className = "gitphy--gif";
-        img.style.backgroundColor = randomColor({ luminosity: "bright" });
+        const img = this._createImgNode(gif);
         img.setAttribute("src", gif.images.fixed_width.url);
-        img.setAttribute("data-gif-url", gif.images.downsized_medium.url);
         return img.outerHTML;
       })
       .join("");

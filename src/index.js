@@ -92,7 +92,7 @@ class Popover {
     const oldContentNode = this._getContentNode();
     const newContentNode = oldContentNode.cloneNode(false);
     // Fill in img tags with no src, but background
-    gifs.forEach((gif, idx) => {
+    gifs.forEach((gif) => {
       const img = this._createImgNode(gif);
       newContentNode.appendChild(img);
     });
@@ -102,8 +102,8 @@ class Popover {
     gifs.forEach(async (gif, idx) => {
       const r = await fetch(gif.images.fixed_width.url);
       const b = await r.blob();
-      const dataURL = await new Promise((resolve, reject) => {
-        var reader = new FileReader();
+      const dataURL = await new Promise((resolve) => {
+        const reader = new FileReader();
         reader.onloadend = () => {
           resolve(reader.result);
         };

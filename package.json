@@ -2,7 +2,7 @@
   "name": "gitphy",
   "author": "Kevin Wu",
   "license": "MIT",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Gifs in your Github",
   "main": "index.js",
   "dependencies": {
@@ -25,6 +25,7 @@
     "serve-docs": "python -m http.server --directory docs"
   },
   "browserslist": [
-    "last 2 Chrome versions"
+    "last 2 Chrome versions",
+    "last 2 Firefox versions"
   ]
 }

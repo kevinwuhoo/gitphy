@@ -34,10 +34,11 @@ class Popover {
     `;
 
     this._popover = tippy(textarea, {
+      appendTo: document.body,
       allowHTML: true, // allows content render HTML
       content: popoverTemplate,
-      interactive: true, // allows clicks in the popover
       hideOnClick: false, // prevents hiding when clicking outside popover
+      interactive: true, // allows clicks in the popover
       maxWidth: 650,
       trigger: "manual",
       theme: "light",

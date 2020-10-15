@@ -18,12 +18,12 @@ Easily search for and insert gifs into Github pull requests and issues.
      Go to `chrome://extensions`, click `Load unpacked`, then select the `dist`
      folder.
 5. Make it amazing!
-6. Submit a pull request.
+6. Submit a pull request!
 
 ## Building
 
 1. Follow steps 1 and 2 in the above `development` section.
-2. Run `npm run build`.
+2. Run `npm run build-clean`.
 3. Find extension built in the `dist` folder.
 
 ## TODO

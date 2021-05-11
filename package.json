@@ -8,7 +8,7 @@
   "dependencies": {
     "@giphy/js-fetch-api": "^1.6.0",
     "delegated-events": "^1.1.2",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "randomcolor": "^0.4.4",
     "tippy.js": "^6.2.5"
   },

@@ -1,8 +1,8 @@
 {
   "name": "gitphy",
-  "version": "1.1.1",
-  "manifest_version": 2,
-  "description": "Put gifs in your Github issues and pull requests without leaving the textarea",
+  "version": "1.1.2",
+  "manifest_version": 3,
+  "description": "Seamlessly insert GIFs into GitHub issues and PRs - search and insert without leaving the textarea",
   "author": "Kevin Wu",
   "icons": {
     "16": "icon16.png",
@@ -18,6 +18,11 @@
       "run_at": "document_end"
     }
   ],
-  "permissions": ["https://github.com/*", "https://*.giphy.com/*"],
-  "web_accessible_resources": ["giphy-attribution.png"]
+  "host_permissions": ["https://github.com/*", "https://*.giphy.com/*"],
+  "web_accessible_resources": [
+    {
+      "resources": ["giphy-attribution.png"],
+      "matches": ["https://github.com/*"]
+    }
+  ]
 }

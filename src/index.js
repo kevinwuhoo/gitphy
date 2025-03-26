@@ -12,6 +12,7 @@ const GITHUB_TEXTAREAS = [
   '[name="comment[body]"]', // create issue/PR comment
   '[name="pull_request_review[body]"]', // create PR review comment dropdown
   '[name="issue_comment[body]"]', // edit issue/PR comment
+  '[class*="prc-Textarea-TextArea-"]', // issue creation
 ].join(", ");
 
 const giphy = new GiphyFetch(process.env.GIPHY_API_KEY);
@@ -34,8 +35,16 @@ class Popover {
     `;
 
     this._popover = tippy(textarea, {
-      appendTo: document.body,
-      allowHTML: true, // allows content render HTML
+      appendTo: () => {
+        const reviewModalSelector = '[id^="review-changes-modal"]';
+        const isInReviewModal = !!textarea.closest(reviewModalSelector);
+        const reviewModal = document.querySelector(reviewModalSelector);
+
+        // If this textarea is inside a review modal, render in review modal
+        // because it's in a top-layer element.
+        return isInReviewModal ? reviewModal : document.body;
+      },
+      allowHTML: true,
       content: popoverTemplate,
       hideOnClick: false, // prevents hiding when clicking outside popover
       interactive: true, // allows clicks in the popover

@@ -2,7 +2,7 @@
   "name": "gitphy",
   "author": "Kevin Wu",
   "license": "MIT",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Gifs in your Github",
   "main": "index.js",
   "dependencies": {
@@ -17,7 +17,7 @@
   },
   "scripts": {
     "build": "npm run pre-build && npx parcel build --no-source-maps src/index.js",
-    "build-watch": "npm run pre-build && npx parcel watch src/index.js",
+    "build-watch": "npm run pre-build && npx parcel watch 'src/*'",
     "clean": "rm -rf .cache dist",
     "clean-build": "npm run clean && npm run build",
     "format": "npx prettier --write src/index.js",
@@ -29,7 +29,7 @@
     "last 2 Firefox versions"
   ],
   "engines": {
-    "node": "~14.4.0",
-    "npm": "~6.14.5"
+    "node": "22",
+    "npm": "10"
   }
 }
